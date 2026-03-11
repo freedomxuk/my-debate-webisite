@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAU辩论网站</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                
+            </div>
+            <div class="nav-links">
+                <a href="#dashboard" class="nav-link active">
+                    <span class="nav-icon">📊</span>
+                    <span>数据大屏</span>
+                </a>
+                <a href="#results" class="nav-link">
+                    <span class="nav-icon">🏆</span>
+                    <span>赛果</span>
+                </a>
+                <a href="#finance" class="nav-link">
+                    <span class="nav-icon">💰</span>
+                    <span>财务</span>
+                </a>
+                <a href="#ranking" class="nav-link">
+                    <span class="nav-icon">📈</span>
+                    <span>排名</span>
+                </a>
+            </div>
+            <div class="nav-user">
+                <div class="user-avatar">
+                    <span>用户</span>
+                </div>
+                <div class="notification-badge">3</div>
+                <!-- 用户下拉菜单 -->
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="user-info">
+                        <div class="user-dropdown-avatar"></div>
+                        <div class="user-dropdown-name"></div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item" id="logoutBtn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16 17 21 12 16 7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        </svg>
+                        <span>退出登录</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 主仪表盘 - 杂志风格 -->
+            <section id="dashboard" class="page-section active magazine-dashboard">
+                <!-- 大标题区域 -->
+                <div class="magazine-header fade-in-up">
+                    <h1>辩论数据大屏</h1>
+                    <p class="magazine-subtitle">实时追踪赛事动态 · 数据驱动辩论 excellence</p>
+                </div>
+
+                                <!-- 活动时间线 -->
+                <div class="activity-timeline-section fade-in-up">
+                    <h3>最近比赛</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2024-03-15</div>
+                                <h4 class="timeline-title">春季联赛</h4>
+                                <p class="timeline-desc">计算机学院 VS 文学院</p>
+                                <div class="timeline-result">
+                                    <span class="winner">胜</span>
+                                    <span class="score">3:2</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2024-03-18</div>
+                                <h4 class="timeline-title">友谊赛</h4>
+                                <p class="timeline-desc">研究生院 VS 本科部</p>
+                                <div class="timeline-result">
+                                    <span class="winner">胜</span>
+                                    <span class="score">2:1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2024-03-20</div>
+                                <h4 class="timeline-title">常规赛</h4>
+                                <p class="timeline-desc">理学院 VS 艺术学院</p>
+                                <div class="timeline-result">
+                                    <span class="loser">负</span>
+                                    <span class="score">1:3</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- 赛果管理页 - 纸质卡片风格 -->
+            <section id="results" class="page-section paper-results">
+                <h2 class="section-title fade-in-up">赛果管理</h2>
+
+                <!-- 排序区域 -->
+                <div class="filter-section">
+                    <div class="filter-controls">
+                        <div class="sort-buttons">
+                            <button class="sort-btn active" data-sort="desc">时间倒序</button>
+                            <button class="sort-btn" data-sort="asc">时间正序</button>
+                            <button class="sort-btn" data-sort="by-tournament">按赛事区分</button>
+                        </div>
+                        <button class="btn btn-primary">新增比赛记录</button>
+                    </div>
+                </div>
+
+                <!-- 赛事卡片网格 -->
+                <div class="paper-matches-grid">
+                    <div class="paper-match-card paper-page ink-effect fade-in-up">
+                        <div class="paper-match-header">
+                            <div class="paper-match-date">2024-03-15</div>
+                            <div class="paper-match-badge">春季联赛</div>
+                        </div>
+                        <div class="paper-match-teams">
+                            <div class="paper-team team-home">
+                                <div class="team-logo">🏛️</div>
+                                <div class="team-info">
+                                    <h4>计算机学院</h4>
+                                </div>
+                                <div class="paper-team-score">3</div>
+                            </div>
+                            <div class="paper-match-vs">VS</div>
+                            <div class="paper-team team-away">
+                                <div class="team-logo">📚</div>
+                                <div class="team-info">
+                                    <h4>文学院</h4>
+                                </div>
+                                <div class="paper-team-score">2</div>
+                            </div>
+                        </div>
+                        <div class="paper-match-footer">
+                            <span class="best-debater">🏆 佳辩: 王五</span>
+                            <button class="expand-btn btn btn-ink">展开详情</button>
+                        </div>
+                        <div class="paper-match-details" style="display: none;">
+                            <div class="topic-section">
+                                <blockquote class="match-topic">
+                                    人工智能是否会取代人类决策？
+                                </blockquote>
+                            </div>
+                            <div class="position-distribution">
+                                <h4>辩位分布</h4>
+                                <div class="position-grid">
+                                    <div class="position-item">
+                                        <span class="position-label">一辩:</span>
+                                        <span class="position-value">张三</span>
+                                    </div>
+                                    <div class="position-item">
+                                        <span class="position-label">二辩:</span>
+                                        <span class="position-value">李四</span>
+                                    </div>
+                                    <div class="position-item">
+                                        <span class="position-label">三辩:</span>
+                                        <span class="position-value">王五</span>
+                                    </div>
+                                    <div class="position-item">
+                                        <span class="position-label">四辩:</span>
+                                        <span class="position-value">赵六</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="match-card">
+                        <div class="match-header">
+                            <span class="match-date">2024-03-18</span>
+                           
+                        </div>
+                        <div class="match-teams">
+                            <div class="team team-home">
+                                <div class="team-logo">🎓</div>
+                                <div class="team-info">
+                                    <h4>研究生院</h4>
+                                    
+                                </div>
+                                <div class="team-score">2</div>
+                            </div>
+                            <div class="match-vs">VS</div>
+                            <div class="team team-away">
+                                <div class="team-logo">🏫</div>
+                                <div class="team-info">
+                                    <h4>本科部</h4>
+                                  
+                                </div>
+                                <div class="team-score">1</div>
+                            </div>
+                        </div>
+                        <div class="match-footer">
+                            <span class="match-type">友谊赛</span>
+                            <button class="expand-btn btn btn-outline">展开详情</button>
+                        </div>
+                    </div>
+
+                    <div class="match-card">
+                        <div class="match-header">
+                            <span class="match-date">2024-03-20</span>
+                            
+                        </div>
+                        <div class="match-teams">
+                            <div class="team team-home">
+                                <div class="team-logo">🔬</div>
+                                <div class="team-info">
+                                    <h4>理学院</h4>
+                                
+                                </div>
+                            </div>
+                            <div class="match-vs">VS</div>
+                            <div class="team team-away">
+                                <div class="team-logo">🎨</div>
+                                <div class="team-info">
+                                    <h4>艺术学院</h4>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="match-footer">
+                            <span class="match-type">常规赛</span>
+                            <span class="match-topic-preview">科技与艺术的融合...</span>
+                            <button class="expand-btn btn btn-outline">展开详情</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 财务管理页 - 行政仪表盘风格 -->
+            <section id="finance" class="page-section executive-finance">
+                <div class="executive-header">
+                    <h1>财务概览</h1>
+                    <p class="executive-subtitle">实时财务监控 · 数据驱动决策</p>
+                </div>
+
+                <!-- 财务概览 - 行政风格 -->
+                <div class="executive-finance-grid">
+                    <div class="executive-stat-card stat-card ink-card">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>总收入</h3>
+                            <p class="stat-value">¥45,280</p>
+                            <p class="stat-trend">↑ 12.5% 同比增长</p>
+                        </div>  
+                    </div>
+                    <div class="executive-stat-card stat-card ink-card">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 3v18h18"/>
+                                <path d="M18 17V9"/>
+                                <path d="M13 17V5"/>
+                                <path d="M8 17v-3"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>总支出</h3>
+                            <p class="stat-value">¥32,150</p>
+                            <p class="stat-trend">↑ 8.3% 同比增长</p>
+                        </div>
+                    </div>
+                    <div class="executive-stat-card stat-card ink-card">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 11H3v10h6V11zm6-7H9v18h6V4zm6 3h-6v14h6V7z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>净收益</h3>
+                            <p class="stat-value">¥13,130</p>
+                            <p class="stat-trend">↑ 18.2% 同比增长</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 图表区域 - 行政风格 -->
+                <div class="executive-charts-grid">
+                    <div class="executive-chart-card chart-card">
+                        <h3>收支趋势分析</h3>
+                        <div class="chart-container">
+                            <canvas id="financeTrendChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="executive-budget-card chart-card">
+                        <h3>预算使用情况</h3>
+                        <div class="budget-overview">
+                            <div class="budget-progress">
+                                <div class="budget-bar">
+                                    <div class="budget-fill" style="width: 68%"></div>
+                                </div>
+                                <div class="budget-info">
+                                    <span>已使用 ¥68,000</span>
+                                    <span>预算 ¥100,000</span>
+                                </div>
+                            </div>
+                            <div class="budget-stats">
+                                <div class="budget-stat">
+                                    <span>剩余</span>
+                                    <strong>¥32,000</strong>
+                                </div>
+                                <div class="budget-stat">
+                                    <span>使用率</span>
+                                    <strong>68%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 交易列表 -->
+                <div class="transactions-section">
+                    <div class="section-header">
+                        <h3>最近交易</h3>
+                        <button class="btn btn-outline">导出记录</button>
+                    </div>
+                    <div class="transaction-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>日期</th>
+                                    <th>项目</th>
+                                    <th>分类</th>
+                                    <th>金额</th>
+                                    <th>状态</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-03-10</td>
+                                    <td>春季联赛报名费</td>
+                                    <td><span class="category income">收入</span></td>
+                                    <td class="amount income">+¥5,000</td>
+                                    <td><span class="status completed">已完成</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-03-09</td>
+                                    <td>场地租赁费</td>
+                                    <td><span class="category expense">支出</span></td>
+                                    <td class="amount expense">-¥2,000</td>
+                                    <td><span class="status completed">已完成</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-03-08</td>
+                                    <td>辩论器材采购</td>
+                                    <td><span class="category expense">支出</span></td>
+                                    <td class="amount expense">-¥3,500</td>
+                                    <td><span class="status completed">已完成</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 积分排名页 - 锦标赛风格 -->
+            <section id="ranking" class="page-section tournament-rankings">
+                <div class="tournament-header">
+                    <h1>积分排行榜</h1>
+                    <p class="tournament-subtitle">辩论精英 · 实时排名</p>
+                </div>
+
+                <!-- 个人积分排名 - 锦标赛 bracket 风格 -->
+                <div class="tournament-bracket">
+                    <!-- 冠军 -->
+                    <div class="champion-spotlight">
+                        <div class="champion-badge">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 3l14 9-14 9V3z"/>
+                            </svg>
+                        </div>
+                        <div class="champion-card stat-card ink-card">
+                            <div class="rank-number rank-1">1</div>
+                            <div class="champion-info">
+                                <h3 class="champion-name">张三</h3>
+                                <div class="champion-stats">
+                                    <span class="stat-item">积分 <strong>2,456</strong></span>
+                                    <span class="stat-item">胜率 <strong>75%</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 亚军和季军 -->
+                    <div class="podium-row">
+                        <!-- 亚军 -->
+                        <div class="podium-card rank-2">
+                            <div class="rank-number">2</div>
+                            <div class="podium-content">
+                                <h4>李四</h4>
+                                <div class="podium-stats">
+                                    <span class="stat-item">积分: 2,234</span>
+                                    <span class="stat-item">胜率: 71%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 季军 -->
+                        <div class="podium-card rank-3">
+                            <div class="rank-number">3</div>
+                            <div class="podium-content">
+                                <h4>王五</h4>
+                                <div class="podium-stats">
+                                    <span class="stat-item">积分: 1,987</span>
+                                    <span class="stat-item">胜率: 68%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 其他排名 -->
+                    <div class="ranking-tiers">
+                        <div class="tier-card">
+                            <h4>精英选手 (Top 10)</h4>
+                            <div class="tier-list">
+                                <div class="tier-item">
+                                    <span class="tier-rank">4</span>
+                                    <span class="tier-name">赵六</span>
+                                    <span class="tier-score">1,756</span>
+                                    <span class="tier-win-rate">65%</span>
+                                </div>
+                                <div class="tier-item">
+                                    <span class="tier-rank">5</span>
+                                    <span class="tier-name">钱七</span>
+                                    <span class="tier-score">1,523</span>
+                                    <span class="tier-win-rate">62%</span>
+                                </div>
+                                <div class="tier-item">
+                                    <span class="tier-rank">6</span>
+                                    <span class="tier-name">孙八</span>
+                                    <span class="tier-score">1,389</span>
+                                    <span class="tier-win-rate">58%</span>
+                                </div>
+                                <div class="tier-item">
+                                    <span class="tier-rank">7</span>
+                                    <span class="tier-name">周九</span>
+                                    <span class="tier-score">1,256</span>
+                                    <span class="tier-win-rate">55%</span>
+                                </div>
+                                <div class="tier-item">
+                                    <span class="tier-rank">8</span>
+                                    <span class="tier-name">吴十</span>
+                                    <span class="tier-score">1,123</span>
+                                    <span class="tier-win-rate">52%</span>
+                                </div>
+                                <div class="tier-item">
+                                    <span class="tier-rank">9</span>
+                                    <span class="tier-name">郑十一</span>
+                                    <span class="tier-score">998</span>
+                                    <span class="tier-win-rate">50%</span>
+                                </div>
+                                <div class="tier-item">
+                                    <span class="tier-rank">10</span>
+                                    <span class="tier-name">王十二</span>
+                                    <span class="tier-score">876</span>
+                                    <span class="tier-win-rate">48%</span>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+                <!-- 积分趋势图表 -->
+                <div class="chart-card">
+                    <h3>积分趋势</h3>
+                    <div class="chart-container">
+                        <canvas id="rankingTrendChart"></canvas>
+                    </div>
+                </div>
+
+
+                <!-- 成就徽章系统 -->
+                <div class="achievements-section">
+                    <h3>成就徽章</h3>
+                    <div class="achievements-grid">
+                        <div class="achievement-card">
+                            <div class="achievement-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                                    <path d="M2 17L12 22L22 17"/>
+                                    <path d="M2 12L12 17L22 12"/>
+                                </svg>
+                            </div>
+                            <h4>连胜王者</h4>
+                            <p>连续获得5场胜利</p>
+                            <span class="achievement-unlocked">已获得</span>
+                        </div>
+                        <div class="achievement-card">
+                            <div class="achievement-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                            </div>
+                            <h4>新星选手</h4>
+                            <p>首次参赛获得胜利</p>
+                            <span class="achievement-unlocked">已获得</span>
+                        </div>
+                        <div class="achievement-card">
+                            <div class="achievement-icon locked">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D1D5DB" stroke-width="2">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                                    <path d="M2 17L12 22L22 17"/>
+                                    <path d="M2 12L12 17L22 12"/>
+                                </svg>
+                            </div>
+                            <h4>辩论大师</h4>
+                            <p>积分超过2000</p>
+                            <span class="achievement-locked">未获得</span>
+                        </div>
+                        <div class="achievement-card">
+                            <div class="achievement-icon locked">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D1D5DB" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                                </svg>
+                            </div>
+                            <h4>人气选手</h4>
+                            <p>获得10个最佳辩手</p>
+                            <span class="achievement-locked">未获得</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 登录/注册模态框 -->
+    <div class="modal" id="authModal">
+        <div class="modal-content paper-page">
+            <div class="modal-header">
+                <button class="modal-close" id="modalClose">&times;</button>
+                <h2 class="modal-title">欢迎</h2>
+            </div>
+            <div class="modal-body">
+                <!-- 标签页头部 -->
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="login">登录</button>
+                    <button class="tab-btn" data-tab="register">注册</button>
+                </div>
+
+                <!-- 登录表单 -->
+                <form class="tab-content active" id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">邮箱</label>
+                        <input type="email" class="form-input input-hover" name="email" placeholder="请输入邮箱" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">密码</label>
+                        <input type="password" class="form-input input-hover" name="password" placeholder="请输入密码" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">登录</button>
+                </form>
+
+                <!-- 注册表单 -->
+                <form class="tab-content" id="registerForm">
+                    <div class="form-group">
+                        <label class="form-label">用户名</label>
+                        <input type="text" class="form-input input-hover" name="username" placeholder="请输入用户名" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">邮箱</label>
+                        <input type="email" class="form-input input-hover" name="email" placeholder="请输入邮箱" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">密码</label>
+                        <input type="password" class="form-input input-hover" name="password" placeholder="至少6位密码" minlength="6" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">确认密码</label>
+                        <input type="password" class="form-input input-hover" name="confirmPassword" placeholder="再次输入密码" minlength="6" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">注册</button>
+                </form>
+            </div>
+        </div>
+    </div>
+<div id="m_a31e41940bd12cf9d24b0e528ab955bc" style="display:none;"></div>
+    <!-- 页面切换脚本 -->
+    <script src="js/navigation.js"></script>
+    <!-- 用户认证脚本 -->
+    <script src="js/auth.js"></script>
+</body>
+</html>
